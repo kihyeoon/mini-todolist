@@ -1,4 +1,3 @@
-import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 
@@ -18,11 +17,10 @@ const Remove = styled.div`
 const TodoItemBlock = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 12px 0;
   &:hover {
     ${Remove} {
-      display: initial;
+      display: block;
     }
   }
 `;
