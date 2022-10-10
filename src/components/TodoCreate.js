@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
-import { useTodoDispatch, useTodoNextId } from "../TodoContext";
+import { fetchCreate } from "../util/api";
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -80,24 +80,17 @@ function TodoCreate() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
-  const dispatch = useTodoDispatch();
-  const nextId = useTodoNextId();
-
   const onToggle = () => setOpen(!open);
   const onChange = (e) => setValue(e.target.value);
   const onSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
-    dispatch({
-      type: "CREATE",
-      todo: {
-        id: nextId.current,
-        text: value,
-        done: false,
-      },
-    });
+    const data = {
+      text: value,
+      done: false,
+    };
+    fetchCreate("http://localhost:3001/todos", data);
     setValue("");
     setOpen(false);
-    nextId.current += 1;
   };
 
   return (

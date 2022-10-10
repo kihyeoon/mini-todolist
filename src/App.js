@@ -4,6 +4,7 @@ import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
 import { TodoProvider } from "./TodoContext";
+import useFetch from "./util/useFetch";
 
 const GlobalStyle = createGlobalStyle`
   /* *{
@@ -15,15 +16,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [todos, loading, error] = useFetch("http://localhost:3001/todos/");
+  console.log(todos, loading, error);
+
   return (
-    <TodoProvider>
-      <GlobalStyle />
-      <TodoTemplate>
-        <TodoHead />
-        <TodoList />
-        <TodoCreate />
-      </TodoTemplate>
-    </TodoProvider>
+    <>
+      <TodoProvider>
+        <GlobalStyle />
+        <TodoTemplate>
+          <TodoHead todos={todos} />
+          <TodoList todos={todos} />
+          <TodoCreate />
+        </TodoTemplate>
+      </TodoProvider>
+    </>
   );
 }
 

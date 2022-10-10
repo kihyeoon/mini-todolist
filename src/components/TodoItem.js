@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
-import { useTodoDispatch } from "../TodoContext";
 import React from "react";
+import { fetchDelete, fetchPatch } from "../util/api";
 
 const Remove = styled.div`
   display: flex;
@@ -58,9 +58,9 @@ const Text = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
-  const dispatch = useTodoDispatch();
-  const onToggle = () => dispatch({ type: "TOGGLE", id });
-  const onRemove = () => dispatch({ type: "REMOVE", id });
+  const onToggle = () =>
+    fetchPatch("http://localhost:3001/todos/", id, { done: !done });
+  const onRemove = () => fetchDelete("http://localhost:3001/todos/", id);
 
   return (
     <TodoItemBlock>
