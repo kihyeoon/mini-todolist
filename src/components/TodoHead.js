@@ -6,7 +6,7 @@ const TodoHeadBlock = styled.div`
   h1 {
     margin: 0;
     font-size: 36px;
-    color: #343a40;
+    color: ${(props) => props.theme.h1Color};
   }
   .day {
     margin-top: 4px;

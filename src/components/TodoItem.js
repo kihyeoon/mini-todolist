@@ -49,11 +49,11 @@ const CheckCircle = styled.div`
 const Text = styled.div`
   flex: 1;
   font-size: 21px;
-  color: #495057;
+  color: ${(props) => props.theme.textColor};
   ${(props) =>
     props.done &&
     css`
-      color: #ced4da;
+      color: ${(props) => props.theme.doneTextColor};
     `}
 `;
 
