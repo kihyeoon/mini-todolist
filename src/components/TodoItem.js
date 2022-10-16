@@ -57,10 +57,15 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text }) {
-  const onToggle = () =>
-    fetchPatch("http://localhost:3001/todos/", id, { done: !done });
-  const onRemove = () => fetchDelete("http://localhost:3001/todos/", id);
+function TodoItem({ id, done, text, getData }) {
+  const onToggle = () => {
+    getData();
+    return fetchPatch("http://localhost:3001/todos/", id, { done: !done });
+  };
+  const onRemove = () => {
+    getData();
+    return fetchDelete("http://localhost:3001/todos/", id);
+  };
 
   return (
     <TodoItemBlock>

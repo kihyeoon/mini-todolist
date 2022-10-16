@@ -78,7 +78,7 @@ const Input = styled.input`
   box-sizing: border-box;
 `;
 
-function TodoCreate() {
+function TodoCreate({ getData }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -93,6 +93,7 @@ function TodoCreate() {
     fetchCreate("http://localhost:3001/todos", data);
     setValue("");
     setOpen(false);
+    getData();
   };
 
   return (

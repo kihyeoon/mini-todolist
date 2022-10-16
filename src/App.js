@@ -5,7 +5,7 @@ import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
 import useFetch from "./util/useFetch";
 import { darkTheme, lightTheme } from "./util/theme";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   /* *{
@@ -17,10 +17,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [todos, loading, error] = useFetch("http://localhost:3001/todos/");
-  console.log(todos, loading, error);
+  const [todos, setTodos] = useState([]);
+  // const [data, loading, error] = useFetch("http://localhost:3001/todos/");
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const res = await fetch("http://localhost:3001/todos/");
+    const data = await res.json();
+    setTodos(data);
+  };
 
   const [isDark, setIsDark] = useState(false);
+
   const toggleTheme = () => {
     setIsDark((prev) => !prev);
   };
@@ -34,8 +44,8 @@ function App() {
         </button>
         <TodoTemplate>
           <TodoHead todos={todos} />
-          <TodoList todos={todos} />
-          <TodoCreate />
+          <TodoList todos={todos} getData={getData} />
+          <TodoCreate getData={getData}/>
         </TodoTemplate>
       </ThemeProvider>
     </>
