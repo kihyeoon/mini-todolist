@@ -1,12 +1,19 @@
 import styled, { css } from "styled-components";
-import { MdDone, MdDelete } from "react-icons/md";
+import { MdDone, MdDelete, MdEdit } from "react-icons/md";
 import React from "react";
 import { fetchDelete, fetchPatch } from "../util/api";
 
+const Edit = styled.div`
+  color: #dee2e6;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    color: skyblue;
+  }
+  display: none;
+`;
+
 const Remove = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
@@ -22,6 +29,9 @@ const TodoItemBlock = styled.div`
   padding: 12px 0;
   &:hover {
     ${Remove} {
+      display: block;
+    }
+    ${Edit} {
       display: block;
     }
   }
@@ -57,14 +67,14 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text, getData }) {
+function TodoItem({ id, done, text, getData, showModal }) {
   const onToggle = () => {
+    fetchPatch("http://localhost:3001/todos/", id, { done: !done });
     getData();
-    return fetchPatch("http://localhost:3001/todos/", id, { done: !done });
   };
   const onRemove = () => {
+    fetchDelete("http://localhost:3001/todos/", id);
     getData();
-    return fetchDelete("http://localhost:3001/todos/", id);
   };
 
   return (
@@ -73,6 +83,9 @@ function TodoItem({ id, done, text, getData }) {
         {done && <MdDone />}
       </CheckCircle>
       <Text done={done}>{text}</Text>
+      <Edit onClick={() => showModal(id, text)}>
+        <MdEdit />
+      </Edit>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>

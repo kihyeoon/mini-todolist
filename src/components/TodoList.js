@@ -8,7 +8,7 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
-function TodoList({ todos, getData }) {
+function TodoList({ todos, getData, showModal }) {
   return (
     <TodoListBlock>
       {todos.map((todo) => (
@@ -18,6 +18,7 @@ function TodoList({ todos, getData }) {
           text={todo.text}
           done={todo.done}
           getData={getData}
+          showModal={showModal}
         />
       ))}
     </TodoListBlock>

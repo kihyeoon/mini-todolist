@@ -3,9 +3,10 @@ import TodoCreate from "./components/TodoCreate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
-import useFetch from "./util/useFetch";
+// import useFetch from "./util/useFetch";
 import { darkTheme, lightTheme } from "./util/theme";
 import { useEffect, useState } from "react";
+import InputModal from "./components/InputModal";
 
 const GlobalStyle = createGlobalStyle`
   /* *{
@@ -17,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
   const [todos, setTodos] = useState([]);
   // const [data, loading, error] = useFetch("http://localhost:3001/todos/");
   useEffect(() => {
@@ -35,6 +38,10 @@ function App() {
     setIsDark((prev) => !prev);
   };
 
+  const showModal = (id, text) => {
+    setModalOpen(true);
+    setModalData({ id, text });
+  };
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
@@ -44,9 +51,16 @@ function App() {
         </button>
         <TodoTemplate>
           <TodoHead todos={todos} />
-          <TodoList todos={todos} getData={getData} />
-          <TodoCreate getData={getData}/>
+          <TodoList todos={todos} getData={getData} showModal={showModal} />
+          <TodoCreate getData={getData} />
         </TodoTemplate>
+        {modalOpen && (
+          <InputModal
+            getData={getData}
+            setModalOpen={setModalOpen}
+            modalData={modalData}
+          />
+        )}
       </ThemeProvider>
     </>
   );
