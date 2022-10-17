@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import TodoCreate from "./components/TodoCreate";
 import TodoHead from "./components/TodoHead";
 import TodoList from "./components/TodoList";
@@ -15,6 +15,15 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${(props) => props.theme.bgColor};
   }
+`;
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
 `;
 
 function App() {
@@ -55,11 +64,13 @@ function App() {
           <TodoCreate getData={getData} />
         </TodoTemplate>
         {modalOpen && (
-          <InputModal
-            getData={getData}
-            setModalOpen={setModalOpen}
-            modalData={modalData}
-          />
+          <ModalBackground>
+            <InputModal
+              getData={getData}
+              setModalOpen={setModalOpen}
+              modalData={modalData}
+            />
+          </ModalBackground>
         )}
       </ThemeProvider>
     </>
