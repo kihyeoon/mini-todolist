@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
   } */
   body {
     background: ${(props) => props.theme.bgColor};
+    transition: 0.3s all ease-in-out;
   }
 `;
 const ModalBackground = styled.div`

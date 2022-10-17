@@ -28,6 +28,7 @@ const ToggleWrapper = styled.button`
     props.isDark === true
       ? "0px 5px 10px rgba(40, 40, 40, 1), 0px 2px 4px rgba(40, 40, 40, 1)"
       : "0 5px 10px rgba(100, 100, 100, 0.15), 0 2px 4px rgba(100, 100, 100, 0.15)"};
+  transition: 0.3s all ease-in-out;
 `;
 
 export default ThemeToggle;
