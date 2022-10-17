@@ -1,4 +1,3 @@
-import useFetch from "./useFetch";
 const BASE_URL = "http://localhost:3000/";
 
 export const fetchCreate = (url, data) => {

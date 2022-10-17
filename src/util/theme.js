@@ -6,6 +6,7 @@ export const darkTheme = {
   cardBgColor: "#0D1117",
   h1Color: "white",
   createBgColor: "#161B22",
+  borderColor: "1px solid #2c2d33",
 };
 
 export const lightTheme = {
@@ -16,4 +17,5 @@ export const lightTheme = {
   cardBgColor: "white",
   h1Color: "#343a40",
   createBgColor: "#f8f9fa",
+  borderColor: "1px solid #eaeaea",
 };

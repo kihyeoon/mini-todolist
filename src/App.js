@@ -7,6 +7,7 @@ import TodoTemplate from "./components/TodoTemplate";
 import { darkTheme, lightTheme } from "./util/theme";
 import { useEffect, useState } from "react";
 import InputModal from "./components/InputModal";
+import ThemeToggle from "./components/ThemeToggle";
 
 const GlobalStyle = createGlobalStyle`
   /* *{
@@ -30,6 +31,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [todos, setTodos] = useState([]);
+  const [isDark, setIsDark] = useState(false);
   // const [data, loading, error] = useFetch("http://localhost:3001/todos/");
   useEffect(() => {
     getData();
@@ -41,23 +43,24 @@ function App() {
     setTodos(data);
   };
 
-  const [isDark, setIsDark] = useState(false);
-
+  // 다크모드 상태변경
   const toggleTheme = () => {
     setIsDark((prev) => !prev);
   };
-
+  // 모달창 열기 상태변경
   const showModal = (id, text) => {
     setModalOpen(true);
     setModalData({ id, text });
   };
+
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <button onClick={toggleTheme}>
+        {/* <button onClick={toggleTheme}>
           {isDark ? "Light Mode" : "Dark Mode"}
-        </button>
+        </button> */}
+        <ThemeToggle toggleTheme={toggleTheme} isDark={isDark} />
         <TodoTemplate>
           <TodoHead todos={todos} />
           <TodoList todos={todos} getData={getData} showModal={showModal} />
