@@ -96,7 +96,7 @@ function InputModal({ getData, setModalOpen, modalData }) {
   const onEdit = (e) => {
     e.preventDefault();
     setModalOpen(false);
-    fetchPatch("http://localhost:3001/todos/", modalData.id, {
+    fetchPatch("/todos/", modalData.id, {
       text: e.target[0].value,
     });
     getData();

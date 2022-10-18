@@ -69,11 +69,11 @@ const Text = styled.div`
 
 function TodoItem({ id, done, text, getData, showModal }) {
   const onToggle = () => {
-    fetchPatch("http://localhost:3001/todos/", id, { done: !done });
+    fetchPatch("/todos/", id, { done: !done });
     getData();
   };
   const onRemove = () => {
-    fetchDelete("http://localhost:3001/todos/", id);
+    fetchDelete("/todos/", id);
     getData();
   };
 

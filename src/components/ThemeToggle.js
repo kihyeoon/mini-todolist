@@ -3,14 +3,13 @@ import styled from "styled-components";
 function ThemeToggle({ toggleTheme, isDark }) {
   return (
     <ToggleWrapper onClick={toggleTheme} isDark={isDark}>
-      {isDark === true ? "🌚" : "🌝"}
+      {isDark ? "🌚" : "🌝"}
     </ToggleWrapper>
   );
 }
 
 const ToggleWrapper = styled.button`
   position: fixed;
-  /* z-index: 999; */
   top: 2%;
   right: 2%;
 

@@ -90,7 +90,7 @@ function TodoCreate({ getData }) {
       text: value,
       done: false,
     };
-    fetchCreate("http://localhost:3001/todos", data);
+    fetchCreate("/todos", data);
     setValue("");
     setOpen(false);
     getData();

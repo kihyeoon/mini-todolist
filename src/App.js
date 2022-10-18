@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   const getData = async () => {
-    const res = await fetch("http://localhost:3001/todos/");
+    const res = await fetch("/todos");
     const data = await res.json();
     setTodos(data);
   };
