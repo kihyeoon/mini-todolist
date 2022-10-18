@@ -10,9 +10,6 @@ import InputModal from "./components/InputModal";
 import ThemeToggle from "./components/ThemeToggle";
 
 const GlobalStyle = createGlobalStyle`
-  /* *{
-    box-sizing: border-box;
-  } */
   body {
     background: ${(props) => props.theme.bgColor};
     transition: 0.3s all ease-in-out;
@@ -58,9 +55,6 @@ function App() {
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        {/* <button onClick={toggleTheme}>
-          {isDark ? "Light Mode" : "Dark Mode"}
-        </button> */}
         <ThemeToggle toggleTheme={toggleTheme} isDark={isDark} />
         <TodoTemplate>
           <TodoHead todos={todos} />
