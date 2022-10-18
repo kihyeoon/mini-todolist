@@ -90,7 +90,7 @@ function TodoCreate({ getData }) {
       text: value,
       done: false,
     };
-    fetchCreate("/todos", data);
+    fetchCreate(process.env.REACT_APP_DB_HOST + "/todos", data);
     setValue("");
     setOpen(false);
     getData();

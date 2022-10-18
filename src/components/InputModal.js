@@ -69,7 +69,6 @@ function InputModal({ getData, setModalOpen, modalData }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-
     // Modal 창이 열렸을 때, 인풋에 포커스를 준다.
     inputRef.current.focus();
 
@@ -96,7 +95,7 @@ function InputModal({ getData, setModalOpen, modalData }) {
   const onEdit = (e) => {
     e.preventDefault();
     setModalOpen(false);
-    fetchPatch("/todos/", modalData.id, {
+    fetchPatch(process.env.REACT_APP_DB_HOST + "/todos/", modalData.id, {
       text: e.target[0].value,
     });
     getData();

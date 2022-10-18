@@ -69,11 +69,11 @@ const Text = styled.div`
 
 function TodoItem({ id, done, text, getData, showModal }) {
   const onToggle = () => {
-    fetchPatch("/todos/", id, { done: !done });
+    fetchPatch(process.env.REACT_APP_DB_HOST + "/todos/", id, { done: !done });
     getData();
   };
   const onRemove = () => {
-    fetchDelete("/todos/", id);
+    fetchDelete(process.env.REACT_APP_DB_HOST + "/todos/", id);
     getData();
   };
 

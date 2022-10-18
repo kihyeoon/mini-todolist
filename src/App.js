@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   const getData = async () => {
-    const res = await fetch("/todos");
+    const res = await fetch(process.env.REACT_APP_DB_HOST + "/todos");
     const data = await res.json();
     setTodos(data);
   };
